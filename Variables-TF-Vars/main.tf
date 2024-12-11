@@ -98,7 +98,7 @@ resource "aws_instance" "web-1" {
   tags = {
     Name       = var.ec2_tag
     Env        = "Prod"
-    Owner      = "sai"
+    Owner      = "kiran"
     CostCenter = "ABCD"
   }
   lifecycle {
