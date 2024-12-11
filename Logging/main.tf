@@ -1,11 +1,11 @@
 #This Terraform Code Deploys Basic VPC Infra.
 provider "aws" {
   region = var.aws_region
-}
 
+}
 terraform {
   backend "s3" {
-    bucket = "worksapce-bucket121"
+    bucket = "worksapce-bucket1212"
     key    = "workspace.statefile"
     region = "us-east-1"
   }
@@ -68,7 +68,7 @@ resource "aws_route_table" "terraform-public" {
   }
 
   tags = {
-    Name = var.Main_Routing_Table
+    Name = "${var.Main_Routing_Table}"
   }
 }
 
@@ -99,13 +99,5 @@ resource "aws_security_group" "allow_all" {
 
 
 
-# resource "aws_dynamodb_table" "state_locking" {
-#   hash_key = "LockID"
-#   name     = "dynamodb-state-locking"
-#   attribute {
-#     name = "LockID"
-#     type = "S"
-#   }
-#   billing_mode = "PAY_PER_REQUEST"
-# }
+
 
