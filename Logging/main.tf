@@ -76,6 +76,15 @@ resource "aws_route_table_association" "terraform-public" {
   subnet_id      = aws_subnet.subnet1-public.id
   route_table_id = aws_route_table.terraform-public.id
 }
+resource "aws_route_table_association" "terraform-public-subnet2" {
+  subnet_id      = aws_subnet.subnet2-public.id
+  route_table_id = aws_route_table.terraform-public.id
+}
+
+resource "aws_route_table_association" "terraform-public-subnet3" {
+  subnet_id      = aws_subnet.subnet3-public.id
+  route_table_id = aws_route_table.terraform-public.id
+}
 
 resource "aws_security_group" "allow_all" {
   name        = "allow_all"
@@ -88,7 +97,13 @@ resource "aws_security_group" "allow_all" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
+  ingress {
+    description = "Allow MySQL inbound traffic"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # Replace with your IP for security
+  }
   egress {
     from_port   = 0
     to_port     = 0
