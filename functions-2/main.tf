@@ -2,13 +2,7 @@
 provider "aws" {
   region = var.aws_region
 }
-terraform {
-  backend "s3" {
-    bucket = "workspacesbucket1213" #create bucket of this name in s3 bucker first
-    key    = "function.tfstate"
-    region = "us-east-1"
-  }
-}
+
 
 resource "aws_vpc" "default" {
   cidr_block           = var.vpc_cidr
@@ -28,5 +22,7 @@ resource "aws_internet_gateway" "default" {
     Name = "${var.vpc_name}-IGW"
   }
 }
+
+
 
 
